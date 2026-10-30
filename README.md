@@ -28,4 +28,4 @@ Despliegue automático de una instancia EC2 con Apache en AWS usando **CloudForm
 
 ## Sitio web
 
-URL: http://IP_PUBLICA  <!-- reemplazar con el valor WebsiteURL del stack -->
+URL: (http://54.242.118.231)  
