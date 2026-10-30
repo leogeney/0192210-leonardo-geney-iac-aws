@@ -5,12 +5,12 @@ Parameters:
   InstanceDescription:
     Description: Descripcion del servidor web
     Type: String
-    Default: Servidor Web Apache
+    Default: Servidor Web Apache v2
 
   InstanceName:
     Description: Nombre (tag Name) de la instancia EC2
     Type: String
-    Default: EC2-Leonardo-Geney-IaC
+    Default: EC2-Leonardo-Geney-IaC-v2
 
   SecurityGroupDescription:
     Description: Security Group Description
@@ -24,7 +24,7 @@ Parameters:
 
 Resources:
 
-  MyInstanceClase:
+  MyInstanceClaseV2:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: !Ref LatestAmiId
@@ -38,6 +38,8 @@ Resources:
           Value: IaC-CloudFormation-GitHub
         - Key: Estudiante
           Value: Leonardo Geney - 0192210
+        - Key: Version
+          Value: v2-actualizada
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
@@ -56,7 +58,7 @@ Resources:
               * { margin: 0; padding: 0; box-sizing: border-box; }
               body {
                 font-family: 'Segoe UI', Arial, sans-serif;
-                background: linear-gradient(135deg, #0f172a, #1e3a8a);
+                background: linear-gradient(135deg, #052e16, #0f766e);
                 color: #e2e8f0;
                 min-height: 100vh;
                 display: flex;
@@ -74,10 +76,10 @@ Resources:
                 box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
               }
               h1 { font-size: 2rem; color: #ffffff; margin-bottom: 6px; }
-              h2 { font-size: 1.1rem; color: #fbbf24; font-weight: 500; margin-bottom: 24px; }
+              h2 { font-size: 1.1rem; color: #a3e635; font-weight: 500; margin-bottom: 24px; }
               .badge {
                 display: inline-block;
-                background: #f97316;
+                background: #16a34a;
                 color: #fff;
                 padding: 4px 12px;
                 border-radius: 999px;
@@ -96,15 +98,18 @@ Resources:
                 border-radius: 8px;
                 font-size: 0.85rem;
               }
-              a { color: #60a5fa; }
+              a { color: #5eead4; }
+              .btn { display: inline-block; margin-top: 20px; background: #a3e635; color: #052e16; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+              .logo { font-size: 3rem; margin-bottom: 10px; }
               footer { margin-top: 28px; font-size: 0.8rem; color: #94a3b8; }
             </style>
           </head>
           <body>
             <div class="card">
+              <div class="logo">☁️🚀</div>
               <span class="badge">${InstanceDescription}</span>
               <h1>Leonardo Geney</h1>
-              <h2>Hola desde CloudFormation con GitHub Actions</h2>
+              <h2>Versión 2 · Página actualizada con IaC</h2>
               <table>
                 <tr><td>Código estudiantil</td><td>0192210</td></tr>
                 <tr><td>Programa</td><td>Ingeniería de Sistemas</td></tr>
@@ -121,7 +126,9 @@ Resources:
                 <span>GitHub Actions</span>
                 <span>Apache</span>
                 <span>User Data</span>
+                <span>Versión 2</span>
               </div>
+              <a class="btn" href="https://ufpso.edu.co" target="_blank">Visitar UFPSO</a>
               <footer>
                 Repositorio: <a href="https://github.com/leogeney/0192210-leonardo-geney-iac-aws">github.com/leogeney/0192210-leonardo-geney-iac-aws</a>
               </footer>
@@ -147,12 +154,12 @@ Outputs:
 
   InstanceId:
     Description: ID de la instancia EC2
-    Value: !Ref MyInstanceClase
+    Value: !Ref MyInstanceClaseV2
 
   PublicIP:
     Description: IP publica de la instancia
-    Value: !GetAtt MyInstanceClase.PublicIp
+    Value: !GetAtt MyInstanceClaseV2.PublicIp
 
   WebsiteURL:
     Description: URL del sitio web
-    Value: !Sub http://${MyInstanceClase.PublicIp}
+    Value: !Sub http://${MyInstanceClaseV2.PublicIp}
